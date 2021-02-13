@@ -1,17 +1,21 @@
 let firstWord = document.querySelector(".startWord");
-let innerText = document.querySelector(".text");
-let button = document.querySelector("button");
+let form = document.querySelector("form");
+let innerText = form.querySelector(".text");
+let button = form.querySelector("button");
 let result = document.querySelector(".result");
  
-function callBack() {
+function callBack(e) {
+    e.preventDefault();
     if (firstWord.textContent[firstWord.textContent.length - 1] === innerText.value[0]) {
         result.textContent = '딩동댕';
         firstWord.textContent = innerText.value;
         innerText.value = '';
+        innerText.focus();
     } else {
         result.textContent = '땡';
+        innerText.focus();
         
     }
 }
 
-button.addEventListener('click', callBack);
+form.addEventListener('submit', callBack);
