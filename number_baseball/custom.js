@@ -1,21 +1,22 @@
-
-    let numCandidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let numArray = [];
-    for (let i = 0; i < 4; i++){
-        let takeNumCandi = numCandidate.splice(Math.floor(Math.random()*(9-i)), 1)[0];
-        numArray.push(takeNumCandi);
-    }
-    console.log(numArray);
-
-
-// splice는 뒤에 배열[]을 붙혀주지 않으면 배열 그 자체로 하나씩 반환한다.
-
 let mainResult = document.querySelector("h1");
 let form = document.querySelector(".gameForm");
 let input = form.querySelector(".gameInput");
 let button = form.querySelector(".gameButton");
 
 input.maxLength = 4;
+let wrongNumber = 0;
+
+let numCandidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let numArray = [];
+    
+for (let i = 0; i < 4; i++){
+    let takeNumCandi = numCandidate.splice(Math.floor(Math.random()*(9-i)), 1)[0];
+    numArray.push(takeNumCandi);
+}
+console.log(numArray);
+
+// splice는 뒤에 배열[]을 붙혀주지 않으면 배열 그 자체로 하나씩 반환한다.
+
 
 form.addEventListener("submit", function (e) {
     e.preventDefault;
@@ -25,13 +26,41 @@ form.addEventListener("submit", function (e) {
         mainResult.innerText = "홈런";
         input.value = ""
         input.focus();
+        let numCandidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let numArray = [];
+    
+        for (let i = 0; i < 4; i++){
+            let takeNumCandi = numCandidate.splice(Math.floor(Math.random()*(9-i)), 1)[0];
+            numArray.push(takeNumCandi);
+        }
+        wrongNumber = 0;
     } else {
         console.log("틀렸어");
         let answerArray = answer.split('');
-        console.log(answerArray);
-        // 문자열이 찍힘.
+        let correct = numArray.join(',');
+        // console.log(answerArray);
+        // 숫자가 아닌 문자열 배열로 찍힘.
+
+        // console.log(numArray.join(','));
+        
         let strike = 0;
         let ball = 0;
+        wrongNumber += 1;
+        if (wrongNumber > 3) {
+            mainResult.innerText = '3번 넘게 틀리셨습니다. 정답은' + numArray.join(',');
+            // numArray.join(',')를 변수에 담아두지 않고 직접 쓸 경우 에러가 발생하는 이유...?
+            // Cannot access 'numArray' before initialization at HTMLFormElement.<anonymous>
+            input.value = ""
+            input.focus();
+            let numCandidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            let numArray = [];
+    
+            for (let i = 0; i < 4; i++){
+                let takeNumCandi = numCandidate.splice(Math.floor(Math.random()*(9-i)), 1)[0];
+                numArray.push(takeNumCandi);
+            }
+            wrongNumber = 0;
+        } else {
         for (let i = 0; i < 3; i++){
             if (Number(answerArray[i]) === numArray[i]) {
                 strike += 1;
@@ -41,7 +70,8 @@ form.addEventListener("submit", function (e) {
         }
         mainResult.innerText = `${strike}스트라이크 ${ball}볼입니다.`;
         input.value = ""
-        input.focus();
+            input.focus();
+        }
     }
 })
 
