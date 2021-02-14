@@ -4,10 +4,10 @@ let input = form.querySelector(".gameInput");
 let button = form.querySelector(".gameButton");
 
 input.maxLength = 4;
+let numArray = [];
 let wrongNumber = 0;
 
 let numCandidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-let numArray = [];
     
 for (let i = 0; i < 4; i++){
     let takeNumCandi = numCandidate.splice(Math.floor(Math.random()*(9-i)), 1)[0];
@@ -37,7 +37,7 @@ form.addEventListener("submit", function (e) {
     } else {
         console.log("틀렸어");
         let answerArray = answer.split('');
-        let correct = numArray.join(',');
+        let correct = numArray.join(', ');
         // console.log(answerArray);
         // 숫자가 아닌 문자열 배열로 찍힘.
 
@@ -47,7 +47,7 @@ form.addEventListener("submit", function (e) {
         let ball = 0;
         wrongNumber += 1;
         if (wrongNumber > 3) {
-            mainResult.innerText = '3번 넘게 틀리셨습니다. 정답은' + numArray.join(',');
+            mainResult.innerText = `3번 넘게 틀리셨습니다. 정답은 ${correct} 였습니다`;
             // numArray.join(',')를 변수에 담아두지 않고 직접 쓸 경우 에러가 발생하는 이유...?
             // Cannot access 'numArray' before initialization at HTMLFormElement.<anonymous>
             input.value = ""
