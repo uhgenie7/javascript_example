@@ -29,7 +29,7 @@ $(function () {
       let slideIdx = (current + 1) % imgs.length;
       slider(slideIdx);
     }, 3000);
-    $(".indicator").find("a").eq(0).addClass("active");
+    
   }
 
   // 슬라이드 멈춤 함수
@@ -72,6 +72,7 @@ $(function () {
 
   });
 
+  $(".indicator").find("a").eq(0).addClass("active");
   autoPlay();
   // slider(0)
 });
