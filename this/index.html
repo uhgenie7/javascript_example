@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>this에 대해서</h1>
+    <p>자바스크립트에서 모든 함수는 실행될 때마다 함수 내부에 this라는 객체가 추가된다.
+    arguments라는 유사 배열 객체와 함께 함수 내부로 암묵적으로 전달되는 것이다. 
+    그렇기 때문에 자바스크립트에서의 this는 <strong>함수가 호출하는 방법</strong>에 따라 그 모습을 달리한다.
+    </p>
+    <h2>상황 1. 객체의 메서드를 호출할 때</h2>
+    <p>객체의 프로퍼티가 함수일 경우 메서드라고 부른다. this는 함수를 실행할 때 함수를 소유하고 있는 객체(메소드를 포함하고 있는 인스턴스)를 참조한다. 즉 해당 메서드를 호출한 객체로 바인딩된다. A.B일 때 B함수 내부에서의 this는 A를 가리키는 것이다.</p>
+    <h2>상황 2. 함수를 호출할 때</h2>
+    <p>특정 객체의 메서드가 아니라 함수를 호출하면, 해당 함수 내부 코드에서 사용된 this 는 전역객체에 바인딩 된다. A.B일 때 A가 전역 객체가 되므로 B함수 내부에서의 this는 당연히 전역 객체에 바인딩 되는 것이다.</p>
+    <h2>설명</h2>
+    <h3>someone.whoAmI();</h3>
+    <p>whoAmI를 호출한 직접적인 대상은 someone<strong>.</strong></p>
+    <h3>myWhoAmI();</h3>
+    <p>myWhoAmI 호출하는 직접적인 대상은 자바스크립트를 실행하는 그 자체, 즉 전역객체(window)이다.</p>
+    <h2>혜진</h2>
+    <button id="btn"><h2>Hello</h2></button>
+    <script src="custom.js"></script>
+</body>
+</html>
